@@ -51,6 +51,7 @@ public class DocumentoControle {
             Cliente cli = clienteSelecionador.selecionar(clientes, id);
             List<Documento> documentos = cli.getDocumentos();
             adicionadorLink.adicionarLink(documentos);
+            adicionadorLink.adicionarLink(documentos, id);
             return ResponseEntity.status(202).body(documentos);
         } catch (Exception e) {
             return ResponseEntity.status(500).body(e.getMessage());
@@ -84,6 +85,7 @@ public class DocumentoControle {
                 Cliente cli = clienteSelecionador.selecionar(clientes, id);
                 Documento doc = docRep.save(documento);
                 adicionadorLink.adicionarLink(doc);
+                adicionadorLink.adicionarLink(doc, cli.getId());
                 cli.getDocumentos().add(doc);
                 cliRep.save(cli);
                 return ResponseEntity.status(201).body(doc);
@@ -110,6 +112,7 @@ public class DocumentoControle {
                     documentoAtualizador.atualizar(doc.get(), documento);
                     Documento docAtualizado = doc.get();
                     adicionadorLink.adicionarLink(docAtualizado);
+                    adicionadorLink.adicionarLink(docAtualizado, cli.getId());
                     return ResponseEntity.status(202).body(docAtualizado);
                 }
             }

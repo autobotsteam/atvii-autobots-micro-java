@@ -15,42 +15,18 @@ public class AdicionadorLinkDocumento implements AdicionadorLink<Documento> {
     @Override
     public void adicionarLink(Documento objeto) {
         long id = objeto.getId();
-        Link linkProprio = WebMvcLinkBuilder
-                .linkTo(WebMvcLinkBuilder
-                        .methodOn(DocumentoControle.class)
-                        .getbyid(id))
-                .withRel("Cliente - Get by ID do cliente");
-        objeto.add(linkProprio);
         Link linkGetById = WebMvcLinkBuilder
                 .linkTo(WebMvcLinkBuilder
                         .methodOn(DocumentoControle.class)
                         .getbyiddoc(id))
-                .withRel("Cliente - Get by ID do documento");
+                .withRel("Documento - Get by ID do documento");
         objeto.add(linkGetById);
         Link linkGetAll = WebMvcLinkBuilder
                 .linkTo(WebMvcLinkBuilder
                         .methodOn(DocumentoControle.class)
                         .getall())
-                .withRel("Clientes - Get all");
+                .withRel("Documento - Get all");
         objeto.add(linkGetAll);
-        Link linkPost = WebMvcLinkBuilder
-                .linkTo(WebMvcLinkBuilder
-                        .methodOn(DocumentoControle.class)
-                        .create(objeto, id))
-                .withRel("Clientes - Create");
-        objeto.add(linkPost);
-        Link linkPut = WebMvcLinkBuilder
-                .linkTo(WebMvcLinkBuilder
-                        .methodOn(DocumentoControle.class)
-                        .update(objeto, id))
-                .withRel("Clientes - Put");
-        objeto.add(linkPut);
-        Link linkDelete = WebMvcLinkBuilder
-                .linkTo(WebMvcLinkBuilder
-                        .methodOn(DocumentoControle.class)
-                        .delete(objeto, id))
-                .withRel("Clientes - Delete");
-        objeto.add(linkDelete);
 
     }
 
@@ -58,42 +34,74 @@ public class AdicionadorLinkDocumento implements AdicionadorLink<Documento> {
     public void adicionarLink(List<Documento> lista) {
         for (Documento documento : lista) {
             long id = documento.getId();
-            Link linkProprio = WebMvcLinkBuilder
-                    .linkTo(WebMvcLinkBuilder
-                            .methodOn(DocumentoControle.class)
-                            .getbyid(id))
-                    .withRel("Cliente - Get by ID do cliente");
-            documento.add(linkProprio);
             Link linkGetById = WebMvcLinkBuilder
                     .linkTo(WebMvcLinkBuilder
                             .methodOn(DocumentoControle.class)
                             .getbyiddoc(id))
-                    .withRel("Cliente - Get by ID do documento");
+                    .withRel("Documento - Get by ID do documento");
             documento.add(linkGetById);
             Link linkGetAll = WebMvcLinkBuilder
                     .linkTo(WebMvcLinkBuilder
                             .methodOn(DocumentoControle.class)
                             .getall())
-                    .withRel("Clientes - Get all");
+                    .withRel("Documento - Get all");
             documento.add(linkGetAll);
+        }
+    }
+
+    public void adicionarLink(List<Documento> lista, long id) {
+        for (Documento documento : lista) {
+            Link linkProprio = WebMvcLinkBuilder
+                    .linkTo(WebMvcLinkBuilder
+                            .methodOn(DocumentoControle.class)
+                            .getbyid(id))
+                    .withRel("Documento - Get by ID do cliente");
+            documento.add(linkProprio);
             Link linkPost = WebMvcLinkBuilder
                     .linkTo(WebMvcLinkBuilder
                             .methodOn(DocumentoControle.class)
                             .create(documento, id))
-                    .withRel("Clientes - Create");
+                    .withRel("Documento - Create");
             documento.add(linkPost);
             Link linkPut = WebMvcLinkBuilder
                     .linkTo(WebMvcLinkBuilder
                             .methodOn(DocumentoControle.class)
                             .update(documento, id))
-                    .withRel("Clientes - Put");
+                    .withRel("Documento - Put");
             documento.add(linkPut);
             Link linkDelete = WebMvcLinkBuilder
                     .linkTo(WebMvcLinkBuilder
                             .methodOn(DocumentoControle.class)
                             .delete(documento, id))
-                    .withRel("Clientes - Delete");
+                    .withRel("Documento - Delete");
             documento.add(linkDelete);
         }
+    }
+
+    public void adicionarLink(Documento objeto, long id) {
+        Link linkProprio = WebMvcLinkBuilder
+                .linkTo(WebMvcLinkBuilder
+                        .methodOn(DocumentoControle.class)
+                        .getbyid(id))
+                .withRel("Documento - Get by ID do cliente");
+        objeto.add(linkProprio);
+        Link linkPost = WebMvcLinkBuilder
+                .linkTo(WebMvcLinkBuilder
+                        .methodOn(DocumentoControle.class)
+                        .create(objeto, id))
+                .withRel("Documento - Create");
+        objeto.add(linkPost);
+        Link linkPut = WebMvcLinkBuilder
+                .linkTo(WebMvcLinkBuilder
+                        .methodOn(DocumentoControle.class)
+                        .update(objeto, id))
+                .withRel("Documento - Put");
+        objeto.add(linkPut);
+        Link linkDelete = WebMvcLinkBuilder
+                .linkTo(WebMvcLinkBuilder
+                        .methodOn(DocumentoControle.class)
+                        .delete(objeto, id))
+                .withRel("Documento - Delete");
+        objeto.add(linkDelete);
     }
 }
